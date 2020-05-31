@@ -1,0 +1,3 @@
+{
+  "scripts" : { "irr" : "node irr.js" }
+}
