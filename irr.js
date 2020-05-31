@@ -19,12 +19,7 @@ function irr(pv, pmt1, pmt2, pmt3, pmt4) {
 irr(3, 1, 1, 1, 1)
 */
 
-function irr() {
-    let cf0 = 1000
-    let cfj = [260, 260, 260, 260]
-    console.log(`${cf0} e ${cfj}`)
- 
-     /*
+/*
      if (cf0==null || cfj.length== -1) {
          console.log('[erro]')
      } else { console.log('ok')
@@ -39,7 +34,24 @@ function irr() {
              }
          }
          console.log(`irr = ${Math.round(i*10000)/100}`)
-     } */
-     }
-     irr()
-     
+*/
+
+function irr() {
+    let cfj = [-1000, 260, 260, 260, 260]
+    if (cfj.length<2) {
+        console.log(`ERRO! Adicione valores ao fluxo.`)
+    } else {
+        let i = 0
+        let npv = cfj[0]
+
+        while( Math.round(npv) != 0) {
+            i += 0.0001
+            for(let c = 1 ; c < cfj.length ; c++) {
+                npv += cfj[c]/((1+i)**c)
+            }
+            console.log(i)
+        }
+    } 
+}
+irr()
+
