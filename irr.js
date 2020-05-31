@@ -41,17 +41,26 @@ function irr() {
     if (cfj.length<2) {
         console.log(`ERRO! Adicione valores ao fluxo.`)
     } else {
-        let i = 0
         let npv = cfj[0]
+        let i = 0
 
-        while( Math.round(npv) != 0) {
-            i += 0.0001
-            for(let c = 1 ; c < cfj.length ; c++) {
-                npv += cfj[c]/((1+i)**c)
+        for(let c = 1 ; c < cfj.length ; c++) {
+          i = 0
+          if (npv + cfj[c] >= 0) {
+            while( Math.round(npv) != 0) {
+             npv += cfj[c]/((1+i)**c)
+             i += 0.0001
             }
             console.log(i)
+          } else {
+            while( Math.round(npv) != 0) {
+             npv += cfj[c]/((1+i)**c)
+             i -= 0.0001
+            }
+            console.log(i)
+          }
         }
-    } 
+      }
 }
 irr()
 
