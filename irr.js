@@ -43,18 +43,17 @@ function irr() {
     } else {
         let npv = cfj[0]
         let i = 0
-
         for(let c = 1 ; c < cfj.length ; c++) {
           i = 0
           if (npv + cfj[c] >= 0) {
+            npv += cfj[c]/((1+i)**c)
             while( Math.round(npv) != 0) {
-             npv += cfj[c]/((1+i)**c)
              i += 0.0001
             }
             console.log(i)
           } else {
+            npv += cfj[c]/((1+i)**c)
             while( Math.round(npv) != 0) {
-             npv += cfj[c]/((1+i)**c)
              i -= 0.0001
             }
             console.log(i)
