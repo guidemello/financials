@@ -97,6 +97,4 @@ function irr() {
             console.log(i)
       }
 }
-
-
 irr()
