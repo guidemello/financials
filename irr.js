@@ -36,6 +36,7 @@ irr(3, 1, 1, 1, 1)
          console.log(`irr = ${Math.round(i*10000)/100}`)
 */
 
+/*
 function irr() {
     let cfj = [-1000, 260, 260, 260, 260]
     if (cfj.length<2) {
@@ -61,4 +62,42 @@ function irr() {
         }
       }
 }
+irr()
+*/
+
+
+function irr() {
+    let cfj = [-1000, 260, 260, 260, 260]
+    if (cfj.length<2) {
+        console.log(`ERRO! Adicione valores ao fluxo.`)
+    } else {
+        let npvtx = 'cfj[0]'
+        let tot = 'cfj[0]'
+        let i = 0
+        for(let c = 1 ; c < cfj.length ; c++) {
+          
+          npvtx += `+cfj[${c}]/((1+i)**${c})`
+          tot += `cfj[${c}]`
+          
+        
+          }
+          console.log(`${npvtx}`)
+    }
+    let npv
+    if (tot.values>0) {
+      while( Math.round(npv) != 0) {
+             i += 0.0001
+             npv = npvtx.values
+            }
+            console.log(i)
+          } else {
+            while( Math.round(npv) != 0) {
+             i -= 0.0001
+             npv = npvtx.values
+            }
+            console.log(i)
+      }
+}
+
+
 irr()
