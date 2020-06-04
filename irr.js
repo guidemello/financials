@@ -78,7 +78,6 @@ function irr() {
           
           npvtx += `+cfj[${c}]/((1+i)**${c})`
           tot += `cfj[${c}]`
-          
         
           }
           console.log(`${npvtx}`)
