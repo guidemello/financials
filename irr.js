@@ -71,30 +71,23 @@ function irr() {
     if (cfj.length<2) {
         console.log(`ERRO! Adicione valores ao fluxo.`)
     } else {
-        let npvtx = 'cfj[0]'
-        let tot = 'cfj[0]'
-        let i = 0
+        var npv = 'cfj[0]'
+        var soma = 'cfj[0]'
+        var i = 0
         for(let c = 1 ; c < cfj.length ; c++) {
-          
-          npvtx += `+cfj[${c}]/((1+i)**${c})`
-          tot += `cfj[${c}]`
-        
-          }
-          console.log(`${npvtx}`)
+            npv += `+(cfj[${c}]/((1+i)**${c}))`
+            soma += `+cfj[${c}]`
+        }
     }
-    let npv
-    if (tot.values>0) {
-      while( Math.round(npv) != 0) {
-             i += 0.0001
-             npv = npvtx.values
-            }
-            console.log(i)
-          } else {
-            while( Math.round(npv) != 0) {
-             i -= 0.0001
-             npv = npvtx.values
-            }
-            console.log(i)
-      }
+    if (eval(soma)>0) {
+        while( Math.round(eval(npv)*100) != 0) {
+            i += 0.000001
+        } 
+    } else {
+        while( Math.round(eval(npv)*100) != 0) {
+            i -= 0.000001
+        }
+    }
+    console.log(Math.round(i*10000)/100)
 }
 irr()
