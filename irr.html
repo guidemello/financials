@@ -4,10 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IRR</title>
-    <h1>Internal Return Rate (IRR)</h1>
-    <h2>Taxa Interna de Retorno (TIR)</h2>
 </head>
 <body>
-    <script src="irr"></script>
+    <h1 style="font: 25px georgia normal;">Internal Return Rate - IRR </h1>
+    <h1 style="font: 15px georgia normal;">(Taxa Interna de Retorno - TIR)</h1>
+    <section>
+        <div>
+            Adicione valores ao fluxo: <input id=num type="number">
+            <input type="button" value="Inserir" id="inserir" onclick="insere()"></p>
+            <p><select name="valores" id="valores" size="10"></select></p>
+            <p><input type="button" value="Calcular"  onclick="irr()"></p>
+        </div>
+        <div id='res'>
+        </div>
+    </section>
+    <script>
+        var val = window.document.getElementById('num')
+        var list = window.document.getElementById('valores')
+        var result = window.document.getElementById('res')
+        var cfj = []
+
+        function insere() {
+            cfj.push(Number(val.value))
+            let item = document.createElement('option')
+            item.text = `${val.value}`
+            list.appendChild(item)
+            val.value =''
+            val.focus() 
+        }
+        
+        function irr() {
+            if (cfj.length<2) {
+                alert (`ERRO! Adicione valores ao fluxo.`)
+            } else {
+                var npv = 'cfj[0]'
+                var soma = 'cfj[0]'
+                var i = 0
+                for(let c = 1 ; c < cfj.length ; c++) {
+                    npv += `+(cfj[${c}]/((1+i)**${c}))`
+                    soma += `+cfj[${c}]`
+                }
+            }
+            if (eval(soma)>0) {
+                while( Math.round(eval(npv)*100) != 0) {
+                    i += 0.000001
+                } 
+            } else {
+                while( Math.round(eval(npv)*100) != 0) {
+                    i -= 0.000001
+                }
+            }
+            result.innerHTML = Math.round(i*10000)/100
+        }
+    </script>
 </body>
+<footer>
+    <p>by Guilherme Mello</p>
+</footer>
 </html>
